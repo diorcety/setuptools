@@ -117,14 +117,8 @@ char *find_exe(char *exename, char *script) {
     if (drive[0] || dir[0]=='\\') {
         return loadable_exe(exename);   /* absolute path, use directly */
     }
-    /* Use the script's parent directory, which should be the Python home
-       (This should only be used for bdist_wininst-installed scripts, because
-        easy_install-ed scripts use the absolute path to python[w].exe
-    */
+    /* Use the script's directory */
     _splitpath(script, drive, dir, fname, ext);
-    result = dir + strlen(dir) -1;
-    if (*result == '\\') result--;
-    while (*result != '\\' && result>=dir) *result-- = 0;
     _makepath(path, drive, dir, exename, NULL);
     return loadable_exe(path);
 }
