@@ -25,7 +25,7 @@ try:
     # Additionally, assert that the compiler module will load
     # also. Ref #1229.
     __import__('Cython.Compiler.Main')
-except ImportError:
+except:
     _build_ext = _du_build_ext
 
 # make sure _config_vars is initialized
